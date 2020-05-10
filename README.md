@@ -13,13 +13,13 @@ Install Jenkins
 * sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 * sudo yum install jenkins
 * sudo systemctl start jenkins
-* netstat -lntp
 * sudo systemctl status jenkins
-* once Jenkins is started do the necessary configuration
+* Run netstat -lntp and verify port 8080 is running
+* once Jenkins is started do the necessary initial configuration as instructed.
 
 Ansible Repository
 ======================
-* Create a ansible-nginx repository in Github.
+* Create a repository in Github.
 * Write the necessary ansible scripts to deploy and update nginx configuration
 
 Configure Jenkins Job
@@ -29,9 +29,9 @@ Configure Jenkins Job
 * In Build Triggers section select Poll SCM and schedule to run every 5 minutes(H/5 * * * *)
 * In the Build Environment section select Use secret text(s) or file(s) and bind the secretfile created in previous step
 * In the build section execute shell command as below
-* rm -f $WORKSPACE/files/agnel.pem
-* mkdir -p $WORKSPACE/files 
-* cp $LOGIN_KEY $WORKSPACE/files/
-* ansible-playbook  -i inventories/hosts playbook.yaml
+ "rm -f $WORKSPACE/files/agnel.pem
+ mkdir -p $WORKSPACE/files 
+ cp $LOGIN_KEY $WORKSPACE/files/
+ ansible-playbook  -i inventories/hosts playbook.yaml"
 
 Now the Jenkins will look for any changes in the repository every 5 mins and runs the ansible playbook whenever changes are detected.
