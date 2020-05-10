@@ -1,0 +1,6 @@
+---
+
+- hosts:
+    - nginx_servers
+  roles:
+    - { role: nginx, become: yes }
