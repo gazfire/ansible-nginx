@@ -15,6 +15,7 @@ Install Jenkins
 * sudo systemctl start jenkins
 * netstat -lntp
 * sudo systemctl status jenkins
+* once Jenkins is started do the necessary configuration
 
 Ansible Repository
 ======================
@@ -32,3 +33,5 @@ Configure Jenkins Job
 * mkdir -p $WORKSPACE/files 
 * cp $LOGIN_KEY $WORKSPACE/files/
 * ansible-playbook  -i inventories/hosts playbook.yaml
+
+Now the Jenkins will look for any changes in the repository every 5 mins and runs the ansible playbook whenever changes are detected.
